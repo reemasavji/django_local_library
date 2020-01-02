@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block title %}<title>Local Library - {{ author.first_name }} {{ author.last_name }}</title>{% endblock %}
+
+{% block content %}
+  <h1>{{ author.first_name }} {{ author.last_name }}</h1>
+
+  <p><strong>Date of birth:</strong> {{ author.date_of_birth }}</p> 
+
+  <h4>Books : </h4>
+ <dl>
+  {% for book in author.book_set.all %}
+    <dt><a href="{% url 'book-detail' book.pk %}">{{book}}</a> </dt>
+    <dd>{{book.summary}}</dd>
+  {% endfor %}
+</dl>
+  <div>
+    <a href="{% url 'author_update' author.id %}" class="btn btn-light" style="padding: 10px">Edit</a> 
+    <a href="{% url 'author_delete' author.pk %}" class="btn btn-light" style="padding: 10px">Delete</a>
+  </div>
+  
+{% endblock %}

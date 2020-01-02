@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block title %}<title>Local Library - Genre</title>{% endblock %}
+
+{% block content %}
+    
+ <a href="{% url 'genre_create' %}" class="btn btn-light" style="float: right;">+ Add new genre</a> 
+ 
+  <h1>Genre List</h1>
+  {% if genre %}
+  <ul>
+    {% for g in genre %}
+      <li>
+        <a href="{% url 'genre-detail' g.id %}">{{ g.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no genre in the library.</p>
+  {% endif %}
+{% endblock %}
